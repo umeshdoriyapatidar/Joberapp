@@ -1,0 +1,21 @@
+
+<%= form_with(model:@job) do |f| %>
+  <%# <%= render 'devise/error_message', object: f.object %> 
+  <div class="field">
+    <%=f.label :Job_title%>
+    <%= f.text_area :job_title, placeholder: "Add Title to your post" %>
+  </div>
+  <div class="field">
+    <%=f.label :Add_minimum_Requied_Experienced %>
+    <%= f.text_area :experience ,placeholder: "add required experience" %>
+  </div>
+  <div class="field">
+    <%=f.label :Add_salary_details %>
+    <%= f.text_area :salary, placeholder: "add salary only integer" %>
+  </div>
+  <div class="field">
+    <%=f.label :Add_description %>
+    <%= f.text_area :description, placeholder: "add description" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<%end%>
