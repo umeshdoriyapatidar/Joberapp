@@ -1,6 +1,6 @@
 
-<%= form_with(model:@job) do |f| %>
-  <%# <%= render 'devise/error_message', object: f.object %> 
+<%= form_with(model:@job, local:true) do |f| %>
+   <%# <%= render 'devise/shared/error_messages',resource:f, object: f.object %>  %>
   <div class="field">
     <%=f.label :Job_title%>
     <%= f.text_area :job_title, placeholder: "Add Title to your post" %>
@@ -17,5 +17,5 @@
     <%=f.label :Add_description %>
     <%= f.text_area :description, placeholder: "add description" %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Job", class: "btn btn-primary" %>
 <%end%>

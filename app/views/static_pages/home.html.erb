@@ -1,7 +1,18 @@
- <% if employee_signed_in? %>
-   <%= link_to 'employees_index_path'
-   %>
- <%else%>
+  <% if employee_signed_in? %>
+    <div>
+      If you wanna create new job 
+      <%= link_to 'Create a new job',new_job_path,class:'btn btn-lg btn-primary'%>
+    </div>
+
+  <%elsif applicant_signed_in?%>
+    <div>
+      <li>
+        <h1>Hello <%=current_applicant.name%></h1>
+        <%= link_to 'New Jobs for you',jobs_path,class:'btn btn-lg btn-primary'%>
+        <%#<%= link_to 'Job_statu',applicant.applies.job,class:'btn btn-secondary my-2'%>
+      </li>
+   </div>
+  <%else%>
 
     <!DOCTYPE html>
     <html>

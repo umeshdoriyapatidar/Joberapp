@@ -1,22 +1,29 @@
 class JobsController < ApplicationController
+  before_action :employee_signed_in?, only: [:create,:destroy,:edit,:update,:new,:index]
+  before_action :applicant_signed_in?, only:[:index]
   def index
-    @jobs=Job.all 
+    if employee_signed_in?
+      @jobs=Job.all.where(employee_id:current_employee.id)
+    else
+      @jobs=Job.all
+    end
   end
 
   def new
-    @job=Job.new
+    @job=current_employee.jobs.build
+
   end
 
   def show
-    @job=Job.find(params{:id})
+    @job=Job.find(params[:id])
   end
 
   def create
-    @job=Job.new(params[:id])
+    @job=current_employee.jobs.build(job_params)
     if @job.save
-      render 'index'
+      redirect_to index
     else
-      render new
+      redirect_to new
     end
   end
 
@@ -28,4 +35,8 @@ class JobsController < ApplicationController
 
   def destroy
   end
+  private
+    def job_params
+      params.require(:job).permit(:job_title,:salary,:description,:experience)
+    end
 end

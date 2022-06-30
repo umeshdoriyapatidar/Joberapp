@@ -1,6 +1,4 @@
 <%if current_employee%>
   <h1> create New job here </h1>
   <%=render 'job_form',job:@job%>
-<%else%>
-  <%redirect_to 'jobs/index'%>
 <%end%>
