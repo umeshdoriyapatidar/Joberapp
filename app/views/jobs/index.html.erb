@@ -1,3 +1,9 @@
-<%@jobs.each do |job|%>
-  <%=link_to job.job_title,job_path(job.id)%>
-<%end%>
+<div class="row py-lg-5">
+  <div class="col-lg-6 col-md-8 mx-auto">
+    <%@jobs.each do |job|%>
+      <li>
+       <h2> <%=link_to job.job_title,job_path(job.id)%></h2>
+      </li>
+    <%end%>
+  </div>
+</div>

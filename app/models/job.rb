@@ -4,5 +4,5 @@ class Job < ApplicationRecord
   validates :salary ,presence: true 
   belongs_to :employee
   has_many :applies
-  has_many :applicant ,through: :apply
+  has_many :applicant ,through: :applies
 end

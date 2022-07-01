@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
+  get 'applies/index'
+  post 'applies/create'
+  get 'applies/destroy'
   resources :jobs
-  resources :employees 
-  resources :applicants
+  get 'employees/index'
+  get 'employees/new'
+  get 'employees/show'
+  get 'employees/create'
+  get 'employees/edit'
+  get 'employees/update'
+  get 'employees/destroy'
+  get 'applicants/index'
+  get 'applicants/new'
+  get 'applicants/show'
+  get 'applicants/create'
+  get 'applicants/edit'
+  get 'applicants/update'
+  get 'applicants/destroy'
+  get 'employees/new'
   devise_for :employees
   devise_for :applicants
   devise_scope :applicant do

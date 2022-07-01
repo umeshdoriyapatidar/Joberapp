@@ -9,4 +9,11 @@ class Applicant < ApplicationRecord
   validates :description, length: {maximum: 210}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def apply(job)
+    jobs<< job
+  end
+  
+
 end

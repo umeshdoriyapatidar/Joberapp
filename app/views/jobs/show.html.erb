@@ -1,17 +1,28 @@
 <div ,class="row py-lg-5">
-<li>
-  <ul>
-    <%=@job.job_title%>
-  </ul>
-  <ul>
-    <%=@job.description%>
-  </ul>
-  <ul>
-    <%=@job.experience%>
-  </ul>
-  <ul>
-    <%=@job.salary%>
-  </ul>
-</li>
+  <li>
+    <ul>
+      <h3>Job Title-</h3> <h2><%=@job.job_title%></h2>
+    </ul>
+    <ul>
+      <div>
+        <h3>Job Description-</h3><h2><%=@job.description%></h2>
+      </div>
+    </ul>
+    <ul>
+      <div>
+        <h3>Required Experinece-<h3><h4><%=@job.experience%> Years</h4> 
+      </div>   
+    </ul>
+    <ul>
+      <div><h3>Total CTC</h3> <h4> <%=@job.salary%>  LPA</h4></div> 
+    </ul>
+  </li>
+  <%if is_applied(current_applicant.id,@job.id)%>
+   <h1 style="color:blue"> <%='You had Already Applied for this job'%></h1>
+  <%else%>  
+    <div>
+      <h1 style="color:red">Click here to apply for this job</h1> <%=link_to "Apply_Now",applies_create_path(job_id:@job.id ) ,method: :post,class:'btn btn-lg btn-primary'%>
+    </div>
+  <%end%>
 </div>
 
