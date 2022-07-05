@@ -2,26 +2,31 @@
 
 <%if current_employee%>
   <h1>Hello <%= current_employee.email %></h1>
-  <h1>It's All User Tables </h1>
+  <h1>It's All User Tables for this job </h1>
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">User_info</th>
+        <th scope="col">Status</th>
         <th colspan="3"></th>
       </tr>
     </thead>
-    <tbody>
-      <% @applicants.each do |user| %>
+    <% @jobs.each do |job| %>
+      <tbody>
+      
         <tr>
-          <td scope="row"><%= user.name %></td>
-          <td scope="row"><%= user.email %></td>
-          <td scope="row"><%= link_to 'Show', applicants_show_path(id:user.id),class:'btn btn-lg btn-primary' %></td>
+          <td scope="row"><%= job.applicant.name %></td>
+          <td scope="row"><%=job.applicant.email %></td>
+          <td scope="row"><%= link_to 'Show', applicants_show_path(id:job.applicant.id),class:'btn btn-lg btn-primary'%></td>
+          <td scope="row"><%=link_to 'Application_status',applies_status_url(job_id:job.id,applicant_id:job.applicant.id),class:'btn btn-link'%></td>
         </tr>
-  
-      <%end%> 
-    </tbody>
+      </tbody>
+      <div>
+         
+      <div>
+    <%end%>
   </table>
         <%# <td><%= link_to 'Destroy', user, method: :delete,data: { confirm: 'Are you sure?' } %>
 <%elsif current_applicant%>

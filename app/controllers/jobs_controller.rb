@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :applicant_signed_in?, only:[:index]
   def index
     if employee_signed_in?
-      @jobs=Job.all.where(employee_id:current_employee.id)
+      @jobs=current_employee.jobs
     else
       @jobs=Job.all
     end
@@ -21,19 +21,30 @@ class JobsController < ApplicationController
   def create
     @job=current_employee.jobs.build(job_params)
     if @job.save
-      redirect_to index
+      redirect_to root_url
     else
       redirect_to new
     end
   end
 
   def edit
+    @job=Job.find(params[:id])
   end
 
   def update
+    @job=Job.find_by(params[job_params])
+    if @job.update(job_params)
+      render 'show'
+    else
+      redirect_to edit
+    end
   end
 
   def destroy
+    @jobs=Job.find(params[:id])
+    @jobs.destroy
+    flash[:danger]= "Job deleted"
+    redirect_to root_url
   end
   private
     def job_params

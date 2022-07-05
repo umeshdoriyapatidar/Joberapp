@@ -1,7 +1,6 @@
 class Applicant < ApplicationRecord
   has_many :applies
   has_many :jobs ,through: :applies
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :name, presence: true
@@ -13,7 +12,6 @@ class Applicant < ApplicationRecord
 
   def apply(job)
     jobs<< job
-  end
-  
+  end 
 
 end

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get 'applies/index'
   post 'applies/create'
-  get 'applies/destroy'
+  delete 'applies/destroy'
+  get 'applies/show'
   resources :jobs
+  get 'applied_job', to:'jobs#applied_job'
   get 'employees/index'
   get 'employees/new'
   get 'employees/show'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   get 'applicants/update'
   get 'applicants/destroy'
   get 'employees/new'
+  get 'applies/status'
   devise_for :employees
   devise_for :applicants
   devise_scope :applicant do

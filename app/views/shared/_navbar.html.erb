@@ -10,11 +10,13 @@
             <li class="nav-item">
                 <%= link_to 'Home',root_path, class: 'nav-link' %>
                 <%= link_to 'Sign Out', destroy_employee_session_path, method: :delete, class: 'nav-link' %>
+                <%= link_to 'Jobs',jobs_path,class:'nav-link'%>
             </li>
         <% elsif applicant_signed_in? %>
             <li class="nav-item">
                 <%= link_to 'Home',root_path, class: 'nav-link' %>
                 <%= link_to 'Sign Out', destroy_applicant_session_path, method: :delete, class: 'nav-link' %>
+                <%= link_to 'My jobs', applies_index_path,class: 'nav-link'%>
             </li>
         <% else %>
             <li class="nav-item">
