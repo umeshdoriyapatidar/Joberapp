@@ -1,5 +1,6 @@
 class AppliesController < ApplicationController
 include AppliesHelper
+before_action :current_employee, only: [:accept, :rejected]
   def index
     if current_applicant   #it will show all applied job by current user
       @jobs=Applicant.find(current_applicant.id).jobs
@@ -22,8 +23,15 @@ include AppliesHelper
     # end
     render 'jobs/show'
   end
-  def status
-    @application=Apply.find_by(params[job_id:job_id,applicant_id:applicant_id])
+  def accept
+    # accept_job((jobs_id=params[:jobs_id]), (user_id=params[:user_id]))
+    job_application=Apply.find_by(job_id:params[:jobs_id],applicant_id:params[:user_id])
+    job_application.accepted!
+  end
+  def rejected
+    job_application=Apply.find_by(job_id:params[:jobs_id],applicant_id:params[:user_id])
+    job_application.rejected!
+    job_application.delete
   end
   def destroy
     @job=Job.find(params[:id])  #it's getting job_id from current user for cancling job application through job show page

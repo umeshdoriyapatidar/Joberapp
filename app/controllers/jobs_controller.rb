@@ -3,9 +3,9 @@ class JobsController < ApplicationController
   before_action :applicant_signed_in?, only:[:index]
   def index
     if employee_signed_in?
-      @jobs=current_employee.jobs
+      @jobs=current_employee.jobs.page params[:page]
     else
-      @jobs=Job.all
+      @jobs=Job.page params[:page]
     end
   end
 

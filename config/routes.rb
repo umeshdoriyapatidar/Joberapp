@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get 'applicants/update'
   get 'applicants/destroy'
   get 'employees/new'
-  get 'applies/status'
+  get 'applies/accept'
+  get 'applies/rejected'
   devise_for :employees
   devise_for :applicants
   devise_scope :applicant do

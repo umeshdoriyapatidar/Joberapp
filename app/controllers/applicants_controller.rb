@@ -1,7 +1,7 @@
 class ApplicantsController < ApplicationController
   def index
     if current_employee   #it will show all the applicants who applied for a job to employee
-      @jobs=Apply.where(job_id:params[:id])
+      @job_application=Apply.where(job_id:params[:id])
     end
   end
 
