@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get 'applies/accept'
   get 'applies/rejected'
   devise_for :employees
-  devise_for :applicants
+  devise_for :applicants, controllers:{
+    confirmation: 'confirmations'
+  }
   devise_scope :applicant do
     get 'sign_in', to: 'devise/sessions#new'
   end

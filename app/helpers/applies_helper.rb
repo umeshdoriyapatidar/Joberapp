@@ -7,7 +7,8 @@ module AppliesHelper
       false
     end
   end
-
+ 
+  
   def application_status(user_id,jobs_id)
     job_application=Apply.find_by(job_id:jobs_id,applicant_id:user_id)
     job_application.status
