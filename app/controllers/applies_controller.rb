@@ -1,9 +1,12 @@
 class AppliesController < ApplicationController
 include AppliesHelper
 before_action :current_employee, only: [:accept, :rejected]
+# before_action :verify ,only: [:create]
   def index
     if current_applicant   #it will show all applied job by current user
+      # case(:scope)
       @jobs=Applicant.find(current_applicant.id).jobs
+      @foo=params[:status]
     end
   end
   def show
@@ -12,7 +15,8 @@ before_action :current_employee, only: [:accept, :rejected]
     end
   end
   def create
-    @job=Job.find(params[:job_id]) #it's geting job_id from current user for applying new job through job show page
+    # byebug
+    @job=Job.find($job_id) #it's geting job_id from current user for applying new job through job show page
     current_applicant.apply(@job)
     if is_applied(current_applicant.id,@job.id)
       current_applicant.applies.find_by(job_id:@job.id).update(apply_date:Time.now)
@@ -25,7 +29,7 @@ before_action :current_employee, only: [:accept, :rejected]
     #   format.html { redirect_to  }
     #   format.js
     # end
-    render 'jobs/show'
+    render root_url
   end
   def accept
     # accept_job((jobs_id=params[:jobs_id]), (user_id=params[:user_id]))
@@ -46,4 +50,27 @@ before_action :current_employee, only: [:accept, :rejected]
     flash[:danger]= "apply removed succesfully"
     redirect_to root_url
   end
+  def verify
+    $job_id= params[:job_id]
+    otp = rand(1000..9999)
+    $global_otp=otp
+    @applicant=current_applicant
+    ApplyConfirmationMailer.with(applicant: @applicant,ranotp: otp).send_otp.deliver
+    # render 'applies/verify'
+  end
+
+  def verifyotp
+    newotp=params[:apply_otp]
+    current_applicant.update(apply_otp:params[:apply_otp])
+    @job_id=params[:job_id]
+    if $global_otp == current_applicant.apply_otp
+      flash[:success]='Otp verfied succefully'
+      redirect_to create
+    else
+      flash[:danger]='Wrong Otp'
+      redirect_to root_url
+    end
+  end
+
+    
 end

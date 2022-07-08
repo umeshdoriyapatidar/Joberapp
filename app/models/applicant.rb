@@ -9,7 +9,7 @@ class Applicant < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable 
 
-
+  
   def apply(job)
     jobs<< job
   end 

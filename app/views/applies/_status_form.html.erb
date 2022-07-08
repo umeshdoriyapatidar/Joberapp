@@ -1,0 +1,4 @@
+<% form_with(url: "applies/index", method: :get, local: true) do |f| %>
+  <%= f.select :status, [['accept','Accept'],['Hold','hold']] %>
+  <%= f.submit %>
+<% end %>

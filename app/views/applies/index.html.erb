@@ -1,6 +1,6 @@
+  <%=render 'status_form'%>
 
-
- <table class="table">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">JOB TITLE</th>
@@ -12,10 +12,12 @@
     <%@jobs.each do |job|%>
       <tbody>
         <% status=application_status(current_applicant.id,job.id)%>
-        <tr>
-          <td scope="row"><h1><%=link_to job.job_title,job_path(id:job.id)%></h1></td>
-          <td scope="row"><h3 style='color:black'><%=status%></h3></td>
-        </tr>
+          <tr>
+            <td scope="row"><h2><%=link_to job.job_title,job_path(id:job.id)%></h2></td>
+            <td scope="row"><h3 style='color:black'><%=status%></h3></td>
+          </tr>
       </tbody>
     <%end%>
+    <%# <%=paginate @jobs%>
   </table>
+  
