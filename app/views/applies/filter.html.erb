@@ -1,0 +1,32 @@
+ <%=link_to 'All jobs',applies_index_path, method: :get ,class:'btn btn-outline-secondary'%>
+ 
+ 
+ <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">JOB TITLE</th>
+        <th scope="col">Status</th>
+        <th scope="col">Applied Date</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <% @apply.each do |apply|%>
+      <tbody>
+        <%# <% apply_date= applied_date(current_applicant.id,job.id)%>
+        <%# <% status=application_status(current_applicant.id,job.id)%> 
+        <%# <%if @status == status%>
+        <%job=Job.find(apply.job_id)%>
+          <tr>
+            <td scope="row"><h2><%=link_to job.job_title,job_path(id:job.id)%></h2></td>
+
+            <td scope="row"><h3 style='color:black'><%=apply.status%></h3></td>
+            <td scope="row"><h3 style='color:black'><%=apply.apply_date%></h3></td>
+          </tr>
+        <%# <%end%>
+        
+      </tbody>
+    <%end%>
+    <%# <%=paginate @jobs%>
+    
+</table>

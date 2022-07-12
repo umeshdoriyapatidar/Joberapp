@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   get 'applies/index'
-  post 'applies/create'
+  post 'applies/filter', to:'applies#filter'
+  get 'applies/create'
   delete 'applies/destroy'
   get 'applies/show'
-  get 'applies/verify'
+  get 'applies/verify' ,to:'applies#verify'
   get '/verifyotp', to:'applies#verifyotp'
+  # resources :applies
   resources :jobs
   get 'applied_job', to:'jobs#applied_job'
   get 'employees/index'
@@ -26,11 +28,7 @@ Rails.application.routes.draw do
   get 'applies/rejected'
   get 'search', to: 'applicants#index'
   devise_for :employees
-  devise_for :applicants do 
-    member do 
-      post 'verifyotp', to:'applies#verifyotp'
-    end
-  end
+  devise_for :applicants 
   devise_scope :applicant do
     get 'sign_in', to: 'devise/sessions#new'
   end

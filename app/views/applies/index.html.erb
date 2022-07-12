@@ -1,23 +1,36 @@
-  <%=render 'status_form'%>
-
-  <table class="table">
+<div class="padding">
+<%=render 'status_form' %>
+</div>
+  <table class="table table-stripped">
     <thead>
       <tr>
+        <th scope="col"> number </th>
         <th scope="col">JOB TITLE</th>
         <th scope="col">Status</th>
-    
+        <th scope="col">Applied Date</th>
         <th colspan="3"></th>
       </tr>
     </thead>
-    <%@jobs.each do |job|%>
+    <%i=0%>
+    <% @jobs.each do |job|%>
       <tbody>
+      
+        <% apply_date= applied_date(current_applicant.id,job.id)%>
         <% status=application_status(current_applicant.id,job.id)%>
+        <%# <%if @status == status%>
+        <%i=i+1%>
           <tr>
+            <td scope="row"><h2><%=i%></h2></td>
             <td scope="row"><h2><%=link_to job.job_title,job_path(id:job.id)%></h2></td>
+
             <td scope="row"><h3 style='color:black'><%=status%></h3></td>
+            <td scope="row"><h3 style='color:black'><%=apply_date%></h3></td>
           </tr>
+        <%# <%end%> 
+        
       </tbody>
     <%end%>
     <%# <%=paginate @jobs%>
+    
   </table>
-  
+ 

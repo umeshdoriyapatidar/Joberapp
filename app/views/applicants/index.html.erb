@@ -20,15 +20,15 @@
         <tr>
           <td scope="row"><%= application.applicant.name %></td>
           <td scope="row"><%=application.applicant.email %></td>
-          <td scope="row"><%= link_to 'Show', applicants_show_path(id:application.applicant.id),class:'btn btn-lg btn-primary'%></td>
+          <td scope="row"><%= link_to 'Show', applicants_show_path(id:application.applicant.id),class:'btn btn-outline-primary'%></td>
           <td scope="row"><%=status%></td>
           <%if status=='hold'%>
-            <td><%=link_to "Accept",applies_accept_path(jobs_id:application.job.id,user_id:application.applicant.id),class:'btn btn-lg btn-primary'%>
+            <td><%=link_to "Accept",applies_accept_path(jobs_id:application.job.id,user_id:application.applicant.id),class:'btn btn btn-primary'%>
             <%=link_to "Cancle",applies_rejected_path(user_id:application.applicant.id,jobs_id:application.job.id)%></td>
             <%after_status=application_status(application.applicant.id,application.job.id)%>
             
           <%else%>
-            <td><%="It's already accepted or rejceted"%><td> <%#it's not permanent%>
+            <td><%="It's already accepted you can't change the"%><td> <%#it's not permanent%>
           <%end%>
         </tr>
       </tbody>

@@ -1,16 +1,16 @@
   <% if employee_signed_in? %>
-    <div>
-      If you wanna create new job 
+    <div class="center1">
+      <h1 style="color:black">Creat new Job here</h1> 
       <%= link_to 'Create a new job',new_job_path,class:'btn btn-lg btn-primary'%>
     </div>
 
   <%elsif applicant_signed_in?%>
-    <div>
-      <li>
-        <h1>Hello <%=current_applicant.name%></h1>
-        <%= link_to 'New Jobs for you',jobs_path,class:'btn btn-lg btn-primary'%>
+    <div class="center">
+      
+        <h1 style="color:black">Hello, <%=current_applicant.name%></h1>
+        <%= link_to 'New Jobs for you',jobs_path,class:'btn btn-lg btn-dark'%>
         <%#<%= link_to 'Job_statu',applicant.applies.job,class:'btn btn-secondary my-2'%>
-      </li>
+    
    </div>
   <%else%>
 

@@ -13,4 +13,8 @@ module AppliesHelper
     job_application=Apply.find_by(job_id:jobs_id,applicant_id:user_id)
     job_application.status
   end
+  def applied_date(user_id,jobs_id)
+    job_application=Apply.find_by(job_id:jobs_id,applicant_id:user_id)
+    job_application.apply_date
+  end
 end
