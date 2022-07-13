@@ -13,8 +13,8 @@ before_action :current_employee, only: [:accept, :rejected]
     end
   end
   def filter
-    apstatus=params[:status]
-    @apply=Apply.where(applicant_id:current_applicant.id).where(status:apstatus)
+    @apply=Apply.where(applicant_id:current_applicant.id).where(status:params[:status])
+    @apply=@apply.order(:apply_date)
   end
   def create
     # byebug
@@ -22,20 +22,15 @@ before_action :current_employee, only: [:accept, :rejected]
     current_applicant.apply(@job)
     if is_applied(current_applicant.id,@job.id)
       current_applicant.applies.find_by(job_id:@job.id).update(apply_date:Time.now)
-    emp_id=@job.employee_id 
-    @employee=Employee.find(emp_id)
-    @applicant=current_applicant
-    ApplyConfirmationMailer.with(applicant: @applicant,job: @job,employee: @employee).apply_confirmation_email.deliver
+      emp_id=@job.employee_id 
+      @employee=Employee.find(emp_id)
+      @applicant=current_applicant
+      ApplyConfirmationMailer.with(applicant: @applicant,job: @job,employee: @employee).apply_confirmation_email.deliver
     end
-    # respond_to do |format|
-    #   format.html { redirect_to  }
-    #   format.js
-    # end
     render 'jobs/show'
   end
   def accept
-    # accept_job((jobs_id=params[:jobs_id]), (user_id=params[:user_id]))
-    job_application=Apply.find_by(job_id:params[:jobs_id],applicant_id:params[:user_id])
+    job_application=Apply.find_by(job_id:params[:jobs_id],applicant_id:params[:user_id])# accept_job((jobs_id=params[:jobs_id]), (user_id=params[:user_id]))
     job_application.accepted!
     @applicant=Applicant.find(params[:user_id])
     @job=Job.find(params[:jobs_id])
@@ -60,7 +55,6 @@ before_action :current_employee, only: [:accept, :rejected]
     ApplyConfirmationMailer.with(applicant: @applicant,ranotp: otp).send_otp.deliver
     render 'applies/verify'
   end
-
   def verifyotp
     newotp=params[:apply_otp]
     current_applicant.update(apply_otp:params[:apply_otp])

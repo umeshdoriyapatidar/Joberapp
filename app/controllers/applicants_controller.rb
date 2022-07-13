@@ -10,9 +10,12 @@ class ApplicantsController < ApplicationController
   end
 
   def show
-    @applicant=Applicant.find(params[:id])
+    if current_employee
+      @applicant=Applicant.find(params[:id])   #it will show the applicant's detail to employee
+    elsif current_applicant
+      @applicant=Applicant.find(current_applicant.id) #it will show the details of current applicant to current applicant
+    end
   end
-
   def create
     @applicant=Applicant.new(params[:id])
     if @applicant.save
@@ -23,12 +26,5 @@ class ApplicantsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
+  
 end

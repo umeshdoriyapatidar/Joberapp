@@ -7,3 +7,6 @@
   <h3 style="color:black">Details-<%=@applicant.description%></h3>
 
 </li>
+<%if current_applicant%>
+  <%=link_to "Edit", edit_applicant_registration_path,method: :get, class:'btn btn-lg btn-outline-danger'%>
+<%end%>

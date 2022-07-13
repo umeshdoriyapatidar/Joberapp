@@ -1,6 +1,6 @@
 
 <%= form_with(model:@job, local:true) do |f| %>
-   <%# <%= render 'devise/shared/error_messages',resource:f, object: f.object %>  %>
+   <%# <%= render 'devise/shared/error_messages',resource:f, object: f.object %> 
   <div class="field">
     <%=f.label :Job_title%>
     <%= f.text_area :job_title, placeholder: "Add Title to your post" %>

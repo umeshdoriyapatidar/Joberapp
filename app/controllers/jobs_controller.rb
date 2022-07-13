@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   def index
     if employee_signed_in?
       @jobs=current_employee.jobs.page params[:page]
-    else
+    elsif applicant_signed_in?
       @jobs=Job.page params[:page]
     end
   end

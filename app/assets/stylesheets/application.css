@@ -15,14 +15,30 @@
  */
 .center {
   margin: auto;
-  width: 50%;
-  border: 3px solid rgb(16, 16, 16);
-  background-color: rgb(96, 177, 212);
+  width: 40%;
+  /* border: 3px solid rgb(16, 16, 16); */
+  background-color: rgba(74, 117, 127, 0.763);
   padding: 10px;
 }
 
 .padding {
   padding-bottom: 50px;
+}
+
+
+.htags {
+
+  border: 1pxs;
+}
+
+
+.signup {
+
+  margin: left;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: rgb(240, 240, 240);
+  /* border: 3px solid rgb(3, 3, 3) */
 }
 
 .center1 {

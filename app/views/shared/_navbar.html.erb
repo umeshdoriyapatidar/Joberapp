@@ -18,9 +18,10 @@
            
                 
                     <li class="nav-item"><%= link_to 'Home',root_path%></li>
-                    <li class="nav-item"><%= link_to 'Sign Out', destroy_applicant_session_path, method: :delete %></li>
+                    <li class="nav-item"><%= link_to 'Find New Jobs',jobs_path%></li>
+                    <li class="nav-item"><%= link_to 'Profile/Edit',applicants_show_path%><li>
                     <li class="nav-item"><%= link_to 'My jobs /Status', applies_index_path%></li>
-            
+                    <li class="nav-item"><%= link_to 'Sign Out', destroy_applicant_session_path, method: :delete %></li>
            
         <% else %>
             <li class="nav-item">

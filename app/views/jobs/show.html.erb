@@ -12,17 +12,19 @@
       </div>
     <%end%>
   <%elsif current_employee%>
+  <div class="center1">
     <div>
       <%=link_to 'Edit job', edit_job_path(id:@job.id),class:'btn btn-lg btn-primary'%>
     </div>
     <div>
-      <h1>See total application for this job
-      <%=link_to 'Total_application',applicants_index_path(id:@job.id),class:'btn btn-info'%>
+      <h1>
+      <%=link_to 'Total_Applications',applicants_index_path(id:@job.id),class:'btn btn-info'%>
       </h1>
     </div>
     <div>
       <%=link_to 'Delete job', job_path(id:@job.id),method: :delete, data:{confirm: "Are you sure?"},class: 'btn btn-danger'%>
     </div>
+  </div>
   <%end%>
 </div>
 
