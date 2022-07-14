@@ -96,9 +96,9 @@ Rails.application.configure do
 
   :address            => 'joberisnotavailable.heroku.com',
   :port               => 587,
-  :domain             => 'heroku.com', #you can also use google.com
+  :domain             => 'gmail.com', #you can also use google.com
   :authentication     => :plain,
-  :user_name          => 'umesh',
+  :user_name          => 'umeshdoriyapatidar@gmail.com',
   :password           => 123456
   }
   # Inserts middleware to perform automatic connection switching.
@@ -107,10 +107,7 @@ Rails.application.configure do
   # to send a subsequent read to the primary.
   #
   # The `database_resolver` class is used by the middleware to determine which
-  # database is appropriate to use based on the time delay.
-  #
-  # The `database_resolver_context` class is used by the middleware to set
-  # timestamps for the last write to the primary. The resolver uses the context
+  # database is appropriate to use basedjoberisnotavailableprimary. The resolver uses the context
   # class timestamps to determine how long to wait before reading from the
   # replica.
   #
