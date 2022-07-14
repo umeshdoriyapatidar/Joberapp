@@ -94,12 +94,15 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = 
   {
 
-  :address            => 'joberisnotavailable.heroku.com',
+  :address            => 'smtp.gmail.com',
   :port               => 587,
-  :domain             => 'gmail.com', #you can also use google.com
+  :domain             => 'heroku.com', #you can also use google.com
   :authentication     => :plain,
   :user_name          => 'umeshdoriyapatidar@gmail.com',
   :password           => 'wnzuhdwqybisqzdb'
+  enable_starttls_auto: true,
+  open_timeout: 5,
+  read_timeout: 5
   }
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
