@@ -98,8 +98,8 @@ Rails.application.configure do
   :port               => 587,
   :domain             => 'gmail.com', #you can also use google.com
   :authentication     => :plain,
-  :user_name          => 'umesh@bestpeers.gmail.com',
-  :password           => 'Udoriya@007'
+  :user_name          => 'umesh',
+  :password           => 123456
   }
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
