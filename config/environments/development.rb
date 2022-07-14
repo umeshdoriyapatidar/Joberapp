@@ -66,7 +66,7 @@ Rails.application.configure do
   :address => '127.0.0.1', 
   :port => 1025, 
   :user_name => 'umeshdoriyapatidar@gmail.com',
-  :password => 123456,
+  :password => 'wnzuhdwqybisqzdb',
   :authentication => 'plain',
   :enable_starttls_auto => true
   }
