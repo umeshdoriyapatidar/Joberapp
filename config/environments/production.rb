@@ -96,7 +96,7 @@ Rails.application.configure do
 
   :address            => 'smtp.gmail.com',
   :port               => 587,
-  :domain             => 'gmail.com', #you can also use google.com
+  :domain             => 'heroku.com', #you can also use google.com
   :authentication     => :plain,
   :user_name          => 'umesh',
   :password           => 123456
