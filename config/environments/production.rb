@@ -99,7 +99,7 @@ Rails.application.configure do
   :domain             => 'heroku.com', #you can also use google.com
   :authentication     => :plain,
   :user_name          => 'umeshdoriyapatidar@gmail.com',
-  :password           => 'wnzuhdwqybisqzdb'
+  :password           => 'wnzuhdwqybisqzdb',
   enable_starttls_auto: true,
   open_timeout: 5,
   read_timeout: 5
