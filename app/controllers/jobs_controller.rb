@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
-  before_action :employee_signed_in?, only: [:create,:destroy,:edit,:update,:new,:index]
-  before_action :applicant_signed_in?, only:[:index]
+include JobsHelper
+  before_action :current_employee, only: [:create,:destroy,:edit,:update,:new,:index]
+  before_action :current_applicant, only:[:index,:show]
   def index
     if employee_signed_in?
       @jobs=current_employee.jobs.page params[:page]
@@ -15,9 +16,18 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job=Job.find(params[:id])
+    if employee_signed_in?
+      if valid_employee?(current_employee.id,params[:id])
+        @job=Job.find(params[:id])
+      else
+        redirect_to jobs_path
+      end
+    elsif current_applicant
+      @job=Job.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
-
   def create
     @job=current_employee.jobs.build(job_params)
     if @job.save
@@ -28,7 +38,11 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @job=Job.find(params[:id])
+    if valid_employee?(current_employee.id,params[:id])
+      @job=Job.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
 
   def update
@@ -41,12 +55,30 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    @jobs=Job.find(params[:id])
-    @jobs.destroy
-    flash[:danger]= "Job deleted"
-    redirect_to root_url
+    if valid_employee?(current_employee.id,params[:id])
+      @jobs=Job.find(params[:id])
+      @jobs.destroy
+      flash[:danger]= "Job deleted"
+      redirect_to root_url
+    end
   end
   private
+    # def valid_applicant
+    #   if applicant_signed_in?
+    #     return errors.add(:base, "sorry it's not validated user") unless current_applicant
+    #   else
+    #     redirect_to root_url
+    #   end 
+    
+    # end 
+    # def valid_employee
+    #   if current_employee
+    #     render 'index'
+    #   else
+    #     return errors.add(:base, "sorry it's not validated user") unless current_employee
+        
+    #   end
+    # end
     def job_params
       params.require(:job).permit(:job_title,:salary,:description,:experience)
     end
